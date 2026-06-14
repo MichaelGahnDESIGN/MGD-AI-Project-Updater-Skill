@@ -1,106 +1,311 @@
 # AI Project Updater Skill
 
-Ein wiederverwendbarer Skill und Arbeitsstandard für sichere lokale Staging-,
-Test- und Update-Workflows über verschiedene Softwareprojekte hinweg.
+Der **AI Project Updater Skill** ist ein geführter Assistent für sichere
+Projekt-Updates.
 
-Der Skill richtet sich an Menschen, die mit Claude Code, ChatGPT Codex, anderen
-KI-Agenten oder menschlichen Entwicklerinnen und Entwicklern an echten Projekten
-arbeiten. Er soll helfen, Projekte kontrolliert weiterzuentwickeln, ohne auf
-Live-Systemen zu experimentieren.
+Er ist für Menschen gedacht, die mehrere Softwareprojekte betreuen und dabei
+mit KI-Agenten wie Claude Code, ChatGPT Codex, ChatGPT Cowork oder anderen
+Coding-Assistenten arbeiten.
 
-Wichtig: Dieses Repository ist zuerst als privates Arbeitsrepository gedacht.
-Es soll erst öffentlich werden, wenn Struktur, Beispiele, Sicherheitsregeln und
-Workflows ausreichend geprüft sind.
+Die wichtigste Idee ist einfach:
 
-## Warum es diesen Skill gibt
+> Wir probieren nicht auf Live-Systemen herum. Wir bauen, prüfen und verstehen
+> Änderungen zuerst lokal oder auf Staging. Erst wenn alles nachvollziehbar
+> funktioniert, wird Live aktualisiert.
 
-Viele Projekte wachsen mit der Zeit: Websites, Apps, Shops, APIs, interne Tools,
-WordPress-Plugins, Flutter-Apps, Symfony-Backends oder kleine statische Seiten.
-Wenn echte Menschen diese Projekte nutzen, wird jedes Update riskanter.
+Dieses Repository ist zuerst privat gedacht. Es soll erst öffentlich werden,
+wenn der Assistent wirklich gut funktioniert, verständlich genug erklärt ist und
+in echten Projekten getestet wurde.
 
-Das Ziel dieses Skills ist deshalb:
+## Ganz Einfach Erklärt
 
-- lokal oder auf Staging entwickeln,
-- Änderungen vor Live sauber testen,
-- Docker-Umgebungen projektübergreifend standardisieren,
-- KI-Agenten klare Regeln für sichere Updates geben,
-- Backups, Migrationen, Tests und Freigaben nicht vergessen,
-- Live-Systeme nur noch gezielt aktualisieren,
-- Menschen auch ohne tiefes DevOps-Wissen Orientierung geben.
+Stell dir ein Projekt wie ein echtes Geschäft vor.
 
-Der Skill ist kein magischer Autopilot. Er ist ein vorsichtiger Arbeitsrahmen.
-Er soll Agenten und Menschen daran hindern, zu früh zu deployen, Secrets zu
-veröffentlichen, Datenbanken ungesichert zu verändern oder Live-Nutzerdaten für
-Tests zu missbrauchen.
+- **Live** ist der Laden, in dem echte Kundinnen und Kunden gerade einkaufen.
+- **Staging** ist der Proberaum hinter dem Laden.
+- **Lokal** ist deine Werkbank zu Hause.
+- **Docker** ist eine Kiste mit kleinen nachgebauten Maschinen, damit deine
+  Werkbank dem echten Laden ähnlicher wird.
 
-## Für wen ist das gedacht?
+Der AI Project Updater Skill sorgt dafür, dass ein KI-Agent nicht einfach in den
+echten Laden rennt und dort an der Kasse, am Regal oder am Stromkasten
+herumprobiert. Stattdessen führt er dich ruhig durch die Vorbereitung:
 
-Für:
+1. Was ist das für ein Projekt?
+2. Wo wird lokal gearbeitet?
+3. Gibt es eine Staging-Umgebung?
+4. Was ist live und wird von echten Menschen genutzt?
+5. Was muss getestet werden?
+6. Gibt es Backups?
+7. Was darf der Agent tun und was nicht?
+8. Ist ein Update wirklich bereit für Live?
 
-- Einzelentwicklerinnen und Einzelentwickler mit mehreren Projekten,
-- kleine Teams mit KI-Coworkern,
-- Agenten-Workflows mit Claude Code, Codex oder ähnlichen Tools,
-- Projekte mit lokaler Entwicklung und manuellem Live-Deployment,
-- Projekte, bei denen Datenschutz, Backups und Nachvollziehbarkeit wichtig sind,
-- Menschen, die Docker nutzen wollen, ohne jedes Projekt komplett neu zu
-  erfinden.
+## Was Der Assistent Macht
 
-Typische Projektarten:
+Der Skill ist nicht nur eine Liste mit Regeln. Er soll wie ein Assistent
+arbeiten, der dich Schritt für Schritt begleitet.
 
-- PHP/Symfony-Projekte,
-- WordPress- oder Shopware-Projekte,
+Er fragt zum Beispiel:
+
+```text
+Welches Projekt möchtest du vorbereiten?
+```
+
+Dann:
+
+```text
+Soll ich erstmal nur lesen und ein Projektprofil erstellen,
+oder soll ich später auch eine lokale Docker-Staging-Umgebung planen?
+```
+
+Und später:
+
+```text
+Gibt es echte Nutzerinnen oder Nutzer auf Live?
+Wenn ja, behandle ich Live als besonders geschützten Bereich.
+```
+
+Der Assistent erklärt dabei, was passiert. Er soll nicht nur technische Befehle
+ausgeben, sondern verständlich sagen, warum ein Schritt wichtig ist.
+
+## Wofür Der Skill Gedacht Ist
+
+Der Skill hilft bei:
+
+- lokalen Staging-Umgebungen,
+- Docker-Organisation über mehrere Projekte hinweg,
+- Update-Vorbereitung,
+- GitHub- und Branch-Übersicht,
+- Staging- und Live-Vergleich,
+- Backup- und Rollback-Planung,
+- sicheren Deployments,
+- Zusammenarbeit mit mehreren KI-Agenten,
+- verständlicher Dokumentation für Nicht-Programmierer.
+
+Typische Projekte:
+
+- Websites,
+- WordPress-Projekte,
+- Shopware- oder Shopify-nahe Projekte,
+- Symfony-/PHP-Backends,
 - Flutter-Web-Apps,
 - Node-/TypeScript-Projekte,
-- statische Websites,
 - REST-APIs,
 - Admin-Oberflächen,
-- kleinere Tools mit Datenbank.
+- interne Tools,
+- kleine und große Kundenprojekte.
 
-## Grundidee
+## Was Der Skill Nicht Macht
 
-Der Skill unterscheidet konsequent zwischen vier Ebenen:
+Der Skill ist bewusst vorsichtig.
 
-| Ebene | Zweck | Regel |
+Er macht nicht automatisch:
+
+- Live-Deployments,
+- Datenbankmigrationen auf echten Servern,
+- Löschen von Dateien oder Backups,
+- Pushes auf wichtige Branches,
+- Änderungen an Zahlungsfunktionen,
+- Veröffentlichung von Secrets,
+- Tests mit echten Zahlungsdaten,
+- Nutzung echter Kundendaten als Demo-Daten.
+
+Wenn so etwas nötig sein könnte, soll der Assistent stoppen und dich klar fragen.
+
+## Die Vier Bereiche
+
+Der Assistent unterscheidet vier Bereiche.
+
+| Bereich | Einfach gesagt | Risiko |
 | --- | --- | --- |
-| Lokal | Entwicklung im Arbeitsordner | frei, aber versioniert und nachvollziehbar |
-| Lokale Staging-Umgebung | Docker-nahe Prüfung mit Testdaten | keine echten Secrets, keine echten Kundendaten |
-| Externe Staging-Umgebung | möglichst live-naher Test vor Veröffentlichung | Backup, Smoke-Test, klare Freigabe |
-| Live | echtes Produktivsystem | keine Experimente, nur geprüfte Updates |
+| Lokal | Dein Arbeitsordner auf deinem Computer | niedrig |
+| Lokales Staging | Nachgebaute Testumgebung, oft mit Docker | niedrig bis mittel |
+| Externes Staging | Testserver im Internet oder beim Hoster | mittel |
+| Live | Echtes System mit echten Menschen | hoch |
 
-Live ist nicht der Ort zum Probieren. Live ist nur das Ziel eines geprüften
-Stands.
+Diese Trennung ist wichtig. Ein Agent darf lokal viel mehr ausprobieren als auf
+Live.
 
-## Was der Skill einem KI-Agenten beibringt
+## Der Geführte Ablauf
 
-Ein Agent, der diesen Skill nutzt, soll:
+Der Assistent führt durch neun Phasen.
 
-1. zuerst Projektregeln und Dokumentation lesen,
-2. lokale, Staging- und Live-Umgebungen unterscheiden,
-3. vorhandene Docker-, Test- und Deployment-Dateien erkennen,
-4. niemals echte Secrets ausgeben oder ins Repository schreiben,
-5. keine produktiven Änderungen ohne ausdrückliche Freigabe durchführen,
-6. lokale Staging-Umgebungen bevorzugen,
-7. vor Migrationen und Deployments Backups verlangen,
-8. Tests und Smoke-Checks dokumentieren,
-9. am Ende knapp sagen, was geprüft wurde, was sicher ist und was offen bleibt.
+### 1. Start
 
-## Was dieser Skill nicht ersetzt
+Der Assistent klärt, was du erreichen willst.
 
-Der Skill ersetzt nicht:
+Beispiele:
 
-- Rechtsberatung,
-- Datenschutzprüfung,
-- Security-Audit,
-- Restore-Test,
-- menschliche Live-Freigabe,
-- professionelle Betriebsüberwachung,
-- projektspezifische Deployment-Dokumentation.
+- nur Projekt verstehen,
+- lokale Docker-Staging-Umgebung planen,
+- Update vorbereiten,
+- Staging mit Live vergleichen,
+- Live-Update vorbereiten,
+- mehrere Projekte in einheitliche Abläufe bringen.
 
-Er hilft aber, diese Punkte nicht zu übersehen.
+### 2. Projekt Lesen
 
-## Installation in ChatGPT Codex oder Codex Desktop
+Der Assistent liest vorhandene Projektdateien, zum Beispiel:
 
-Klone das Repository in einen Skill-Ordner und kopiere den eigentlichen Skill:
+- `README.md`,
+- `AGENTS.md`,
+- `CLAUDE.md`,
+- `DEPLOYMENT.md`,
+- `SECURITY.md`,
+- Docker-Dateien,
+- Testkonfiguration,
+- Dokumentation.
+
+Er erklärt danach in einfacher Sprache, was er verstanden hat.
+
+### 3. Sicherheitsstufe Festlegen
+
+Der Assistent fragt, was erlaubt ist.
+
+Beispiele:
+
+- nur lesen,
+- lokale Dateien ändern,
+- Docker-Dateien vorbereiten,
+- Tests ausführen,
+- GitHub prüfen,
+- Staging prüfen,
+- Live nur ansehen,
+- Live verändern nur nach ausdrücklicher Freigabe.
+
+### 4. Projektprofil Erstellen
+
+Der Assistent sammelt die wichtigsten Informationen:
+
+- Projektname,
+- Technik,
+- Datenbank,
+- lokale Startbefehle,
+- Testbefehle,
+- Staging-URLs,
+- Live-URLs,
+- sensible Bereiche,
+- Backup-Regeln,
+- was KI-Agenten dürfen.
+
+Eine Vorlage liegt unter:
+
+```text
+templates/project-profile.md
+```
+
+### 5. Lokale Staging-Umgebung Planen
+
+Wenn Docker sinnvoll ist, erklärt der Assistent die Umgebung einfach:
+
+```text
+Wir bauen eine kleine lokale Server-Werkstatt.
+Die Datenbank läuft in einem Container.
+E-Mails gehen nicht an echte Menschen, sondern in Mailpit.
+Die App und API können lokal getestet werden.
+```
+
+Er schlägt nur Dienste vor, die das Projekt wirklich braucht.
+
+Typische Dienste:
+
+```text
+proxy        lokaler Web-Einstieg
+app          App oder Frontend
+admin        Admin-Oberfläche
+api          Backend/API
+db           Datenbank
+mailpit      lokaler Mailfänger
+queue        Hintergrundjobs, falls nötig
+cron         geplante Aufgaben, falls nötig
+adminer      lokaler Datenbank-Browser, falls sinnvoll
+```
+
+### 6. Tests Erklären Und Ausführen
+
+Der Assistent erklärt Tests nicht als Zauberei, sondern als Sicherheitsprüfung.
+
+Beispiele:
+
+- Lädt die Startseite?
+- Antwortet die API?
+- Funktioniert der Login grundsätzlich?
+- Werden E-Mails nur lokal abgefangen?
+- Läuft die Datenbankmigration?
+- Gibt es JavaScript-Fehler?
+- Stimmen Versionen zusammen?
+
+### 7. Staging Prüfen
+
+Wenn es eine externe Staging-Umgebung gibt, wird dort zuerst geprüft.
+
+Der Assistent soll sagen:
+
+- was erreichbar ist,
+- welche Version läuft,
+- ob geschützte Bereiche wirklich geschützt sind,
+- ob Staging nicht versehentlich indexiert wird,
+- ob Tests bestanden haben.
+
+### 8. Live Vorbereiten
+
+Live wird nicht nebenbei aktualisiert.
+
+Vor Live braucht es:
+
+- grünen lokalen Test,
+- grünen Staging-Test,
+- Backup,
+- Rollback-Idee,
+- klare Freigabe,
+- kurze Liste der Änderungen,
+- Plan für den Live-Smoke danach.
+
+### 9. Abschlussbericht
+
+Am Ende gibt der Assistent einen Ampelbericht.
+
+```text
+Grün:
+- lokale Tests bestanden
+- Staging erreichbar
+- keine Secret-Funde
+
+Gelb:
+- Docker fehlt noch
+- Backup-Restore wurde nicht getestet
+
+Rot:
+- Live-Update nicht freigeben, solange Migration unklar ist
+```
+
+## Beispiel-Dialog
+
+So kann eine Sitzung aussehen:
+
+```text
+Mensch:
+Nutze den AI Project Updater Skill.
+Führe mich durch DungeonJournal. Erstmal nur lesen und erklären.
+
+Assistent:
+Alles klar. Ich prüfe zuerst nur lesend.
+Ich ändere keine Dateien, starte kein Deployment und gebe keine Secrets aus.
+Zuerst lese ich README, Projektregeln, Deployment-Doku und Git-Status.
+
+Assistent:
+Ich habe verstanden:
+- Das Projekt hat eine Plattform, App, Admin und API.
+- Live wird von echten Menschen genutzt.
+- Staging existiert separat.
+- Docker ist lokal noch nicht eingerichtet.
+
+Meine erste Frage:
+Soll ich jetzt ein Projektprofil erstellen oder zuerst erklären,
+welche lokale Docker-Staging-Umgebung sinnvoll wäre?
+```
+
+## Installation in ChatGPT Codex Oder Codex Desktop
 
 ```bash
 mkdir -p ~/.codex/skills
@@ -143,129 +348,71 @@ cp -R ai-project-updater ~/.claude/skills/ai-project-updater
 
 ## Nutzung
 
-In einem Projekt kannst du zum Beispiel schreiben:
+Zum Start:
 
 ```text
 /ai-project-updater
-Prüfe dieses Projekt und entwirf eine lokale Docker-Staging-Umgebung.
-Noch nichts umsetzen, nur analysieren und planen.
+Führe mich Schritt für Schritt durch dieses Projekt.
+Erkläre alles einfach. Erstmal nur lesen.
 ```
 
-Oder:
+Für eine Docker-Staging-Planung:
 
 ```text
 Nutze den AI Project Updater Skill.
-Vergleiche lokalen Stand, GitHub, Staging und Live nur lesend.
-Keine Deployments, keine Datenbankänderungen, keine Secrets ausgeben.
+Entwirf mit mir eine lokale Docker-Staging-Umgebung.
+Frag mich Schritt für Schritt und setze noch nichts um.
 ```
 
-Oder:
+Für einen Update-Check:
 
 ```text
-/ai-project-updater
-Bereite einen sicheren Update-Ablauf vor:
-lokal testen, Staging prüfen, Backup planen, Live-Deploy erst nach Freigabe.
+Nutze den AI Project Updater Skill.
+Prüfe, ob dieses Projekt bereit für ein Staging-Update ist.
+Keine Live-Aktionen.
 ```
 
-## Typischer Ablauf
-
-Der Skill führt Agenten durch diese Reihenfolge:
-
-1. **Projektkontext laden**  
-   Agenten lesen README, AGENTS.md, CLAUDE.md, Projektregeln, Deployment-Doku,
-   vorhandene Docker-Dateien, Testbefehle und GitHub-Kontext.
-
-2. **Umgebungen erkennen**  
-   Agenten unterscheiden lokal, lokale Docker-Staging-Umgebung, externe
-   Staging-Umgebung und Live.
-
-3. **Risiken einordnen**  
-   Auth, Zahlung, personenbezogene Daten, Uploads, Admin-Funktionen,
-   Datenbankmigrationen und Cronjobs gelten als sensibel.
-
-4. **Docker-Staging planen**  
-   Agenten schlagen Services, Volumes, Netzwerke, lokale Domains, Testdaten,
-   Mail-Testsysteme und Datenbankstrategie vor.
-
-5. **Tests definieren**  
-   Agenten suchen vorhandene Tests und ergänzen nur, was wirklich fehlt:
-   Syntaxchecks, Unit-Tests, Build-Tests, Browser-Smokes, API-Smokes.
-
-6. **Update vorbereiten**  
-   Agenten erstellen einen nachvollziehbaren Plan mit Backup, Migrationen,
-   Rollback und Freigabegrenzen.
-
-7. **Live schützen**  
-   Agenten führen keine Live-Schreibaktionen aus, solange keine ausdrückliche
-   Freigabe, kein Backup und kein geprüfter Teststand vorhanden sind.
-
-8. **Ergebnis berichten**  
-   Agenten fassen kurz zusammen: geprüft, bestanden, offen, riskant, nächste
-   sinnvolle Aktion.
-
-## Docker-Staging-Prinzipien
-
-Eine gute lokale Staging-Umgebung soll:
-
-- mit `docker compose up -d` startbar sein,
-- klar benannte Services haben,
-- keine echten Live-Secrets enthalten,
-- Testdaten statt echter Nutzerdaten nutzen,
-- E-Mails in Mailpit oder einem ähnlichen lokalen Tool abfangen,
-- Datenbankdaten in benannten Volumes halten,
-- Reset- und Seed-Befehle dokumentieren,
-- möglichst ähnliche PHP-/Node-/DB-Versionen wie Staging oder Live nutzen,
-- Logs lokal halten und keine sensiblen Daten veröffentlichen,
-- ohne Live-Verbindung funktionieren, wenn nicht ausdrücklich anders gewünscht.
-
-Beispielhafte Services:
+Für einen Live-Vorbereitungscheck:
 
 ```text
-proxy        lokaler Web-Einstieg oder Reverse Proxy
-app          Frontend, Flutter-Web-Build oder statische App
-admin        Admin-Oberfläche
-api          Backend/API, zum Beispiel Symfony oder Node
-db           MariaDB/PostgreSQL
-mailpit      lokaler Mailfänger
-queue        optionaler Worker
-cron         optionaler Scheduler
-adminer      optionaler DB-Browser nur lokal
+Nutze den AI Project Updater Skill.
+Bereite ein Live-Update vor, aber führe es nicht aus.
+Erkläre mir, welche Prüfungen und Backups vorher nötig sind.
 ```
 
-## Datenschutz und Sicherheit
+## Was Der Assistent Dokumentieren Kann
 
-Der Skill folgt einer konservativen Sicherheitslogik:
+Für längere Sitzungen kann der Agent ein Sitzungsprotokoll führen.
 
-- Keine `.env`-Dateien committen.
-- Keine echten Passwörter, Tokens, API-Keys oder Sessiondaten dokumentieren.
-- Keine echten Zahlungsdaten in lokalen Tests.
-- Keine echten Nutzerdaten in Demo-Dumps.
-- Produktive Dumps nur anonymisiert oder stark eingeschränkt lokal verwenden.
-- Logs vor Weitergabe auf personenbezogene Daten prüfen.
-- KI-Agenten dürfen Secrets erkennen, aber nicht ausgeben.
-- Agenten sollen bei Unsicherheit stoppen und fragen.
-
-## Projektprofil
-
-Für jedes Projekt sollte ein kleines Projektprofil gepflegt werden. Eine Vorlage
-liegt unter:
+Vorlage:
 
 ```text
-templates/project-profile.md
+templates/assistant-session.md
 ```
 
-Dieses Profil erklärt:
+Darin stehen:
 
-- Projektname,
-- Stack,
-- lokale Startbefehle,
-- Testbefehle,
-- Staging-URLs,
-- Live-URLs,
-- Deployment-Art,
-- Backup-Regeln,
-- sensible Bereiche,
-- erlaubte und verbotene Agentenaktionen.
+- Ziel der Sitzung,
+- erlaubte Aktionen,
+- gelesene Dateien,
+- getroffene Annahmen,
+- offene Fragen,
+- nächste sichere Schritte.
+
+## Datenschutz Und Sicherheit
+
+Der Assistent soll immer nach diesen Regeln arbeiten:
+
+- keine echten `.env`-Dateien in Git,
+- keine Passwörter in Markdown,
+- keine Tokens in Logs,
+- keine echten Kundendaten als Testdaten,
+- keine Zahlungsdaten außerhalb einer Sandbox,
+- keine Live-Datenbankänderung ohne Backup,
+- keine Screenshots mit sensiblen Daten veröffentlichen,
+- keine Agentenentscheidung als menschliche Freigabe ausgeben.
+
+Wenn der Assistent unsicher ist, soll er nicht raten. Er soll fragen.
 
 ## Repository-Struktur
 
@@ -288,6 +435,7 @@ AI-Project-Updater-Skill/
 │   ├── docker-staging.md
 │   └── release-flow.md
 ├── templates/
+│   ├── assistant-session.md
 │   ├── project-profile.md
 │   ├── docker-compose.staging.example.yml
 │   └── release-checklist.md
@@ -295,43 +443,17 @@ AI-Project-Updater-Skill/
     └── README.md
 ```
 
-## Verhältnis zu anderen Skills
+## Verhältnis Zu Anderen Skills
 
-Dieser Skill ergänzt andere Skills:
+Der Skill ergänzt:
 
-- **DEV-Skill**: allgemeiner Projekt-Sync, Tests, Deploy-Vorbereitung,
-  Dokumentation.
-- **ProjectClean-Skill**: Abschluss, Version, Backup, Cleanup.
-- **AI-PlayTest-Skill**: Nutzertests aus echten Rollen.
-- **AI-Basic-Projektordner**: Grundstruktur für neue KI-gestützte Projekte.
+- **DEV-Skill** für Projekt-Sync, Tests und Deploy-Vorbereitung,
+- **ProjectClean-Skill** für Abschluss, Version, Backup und Cleanup,
+- **AI-PlayTest-Skill** für Nutzertests,
+- **AI-Basic-Projektordner** als Projektgrundlage.
 
-Der AI Project Updater Skill fokussiert stärker auf lokale Staging-Umgebungen,
-Docker-Organisation und sichere Update-Pipelines über mehrere Projekte hinweg.
-
-## Gute erste Aufgaben für Agenten
-
-```text
-Nutze den AI Project Updater Skill.
-Analysiere dieses Projekt nur lesend und erstelle ein Projektprofil.
-Keine Dateien ändern.
-```
-
-```text
-Nutze den AI Project Updater Skill.
-Entwirf eine lokale Docker-Staging-Umgebung für dieses Projekt.
-Noch keine Umsetzung, nur Architektur und Risiken.
-```
-
-```text
-Nutze den AI Project Updater Skill.
-Prüfe, ob dieses Projekt bereit für ein Staging-Update ist.
-Keine Live-Aktionen.
-```
-
-```text
-Nutze den AI Project Updater Skill.
-Vergleiche lokal, GitHub, Staging und Live und schreibe einen Ampelbericht.
-```
+Der AI Project Updater Skill ist der geführte Assistent davor und dazwischen:
+Er hilft zu verstehen, zu ordnen, sicher zu planen und erst danach umzusetzen.
 
 ## Lizenz
 
