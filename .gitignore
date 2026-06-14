@@ -16,3 +16,10 @@ coverage/
 playwright-report/
 test-results/
 *.log
+
+# Lokal-only: Playtests und DB-Backups nie versionieren
+PlayTest/
+**/PlayTest/
+*.sql
+*.sql.gz
+*.dump

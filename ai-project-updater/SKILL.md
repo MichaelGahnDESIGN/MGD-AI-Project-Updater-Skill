@@ -23,6 +23,10 @@ folgen können.
 - Du unterscheidest immer lokal, lokale Staging-Umgebung, externe Staging-
   Umgebung und Live.
 - Wenn mehrere KI-Agenten parallel arbeiten, schützt du fremde Änderungen.
+- **Lokal-only:** Playtests (`PlayTest*`-Branches/-Artefakte), Backups (`*.sql`,
+  `*.sql.gz`, `BACKUPS/`) und sensible Daten (`.env*` außer `.env.example`, Tokens,
+  Keys, Zugangsdaten) verlassen nie die lokale Maschine — nie committen, nie zu
+  GitHub pushen, nie deployen. Nur `main` pushen, niemals `git push --all`.
 
 ## Startverhalten
 
