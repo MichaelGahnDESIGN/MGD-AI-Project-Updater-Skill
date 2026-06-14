@@ -17,6 +17,61 @@ Dieses Repository ist zuerst privat gedacht. Es soll erst öffentlich werden,
 wenn der Assistent wirklich gut funktioniert, verständlich genug erklärt ist und
 in echten Projekten getestet wurde.
 
+## Schnellstart Für Nicht-Programmierer
+
+Wenn der Skill installiert ist, reicht für den Anfang dieser Satz:
+
+```text
+/ai-project-updater-readonly
+Führe mich durch dieses Projekt. Bitte nur lesen, nichts ändern und alles
+einfach erklären.
+```
+
+Der Assistent sollte dann:
+
+1. kurz erklären, was er prüfen möchte,
+2. keine Dateien ändern,
+3. keine Secrets ausgeben,
+4. wichtige Projektdateien lesen,
+5. dir in normaler Sprache sagen, was er verstanden hat,
+6. dich fragen, ob als Nächstes ein Projektprofil oder eine Docker-Staging-
+   Planung entstehen soll.
+
+Wenn du schon weißt, dass du Docker planen möchtest:
+
+```text
+/ai-project-updater-docker-plan
+Plane mit mir eine lokale Docker-Staging-Umgebung. Bitte noch nichts umsetzen.
+```
+
+Wenn ein echtes Update vorbereitet werden soll:
+
+```text
+/ai-project-updater-live-preflight
+Bereite mit mir ein Live-Update vor, aber führe nichts live aus.
+```
+
+## Was Du Vorher Brauchst
+
+Für den ersten lesenden Start brauchst du nur:
+
+- den Projektordner,
+- Git, wenn das Projekt versioniert ist,
+- einen installierten KI-Agenten, der Skills oder Markdown-Regeln lesen kann.
+
+Für Docker-Staging brauchst du zusätzlich:
+
+- Docker Desktop oder Docker Engine,
+- genug Speicherplatz,
+- keine echten Live-Secrets in lokalen Beispiel-Dateien,
+- idealerweise Testdaten oder anonymisierte Daten.
+
+Für Staging- oder Live-Prüfungen brauchst du zusätzlich:
+
+- die passenden URLs,
+- klare Erlaubnis, ob nur gelesen oder auch geprüft werden darf,
+- bei Live-Aktionen vorher ein Backup- und Rückfallkonzept.
+
 ## Ganz Einfach Erklärt
 
 Stell dir ein Projekt wie ein echtes Geschäft vor.
@@ -380,6 +435,82 @@ Bereite ein Live-Update vor, aber führe es nicht aus.
 Erkläre mir, welche Prüfungen und Backups vorher nötig sind.
 ```
 
+## Verfügbare Commands
+
+Die Command-Dateien liegen jeweils unter `.claude/commands/` und
+`.codex/commands/`.
+
+| Command | Zweck |
+| --- | --- |
+| `/ai-project-updater` | Normaler geführter Assistent. Fragt zuerst nach Ziel und Erlaubnis. |
+| `/ai-project-updater-readonly` | Nur lesen, nichts ändern, keine Tests mit Schreibwirkung. Gut für den ersten Projektüberblick. |
+| `/ai-project-updater-docker-plan` | Lokale Docker-Staging-Umgebung erklären und planen, ohne sie umzusetzen. |
+| `/ai-project-updater-staging-check` | Lokale oder externe Staging-Umgebung prüfen und einfach erklären. |
+| `/ai-project-updater-live-preflight` | Live-Update vorbereiten, aber nicht ausführen. Fokus auf Backup, Tests, Risiken und Freigabe. |
+
+## Komplettes Beispiel: Erstes Projekt Verstehen
+
+```text
+Mensch:
+/ai-project-updater-readonly
+Schau dir dieses Projekt an. Ich bin kein Programmierer. Erkläre mir bitte,
+was vorhanden ist und wie ein sicherer Update-Ablauf aussehen würde.
+
+Assistent:
+Alles klar. Ich prüfe nur lesend.
+Ich ändere keine Dateien, starte kein Deployment und gebe keine Secrets aus.
+Ich lese zuerst README, Agentenregeln, Deployment-Hinweise, Git-Status und
+vorhandene Testbefehle.
+
+Assistent:
+Ich habe verstanden:
+- Das Projekt ist eine Web-App mit API und Admin-Bereich.
+- Live wird aktiv genutzt.
+- Es gibt noch keine lokale Docker-Staging-Umgebung.
+- Vor Live-Updates sollten zuerst lokale Tests und ein Staging-Test laufen.
+
+Meine nächste Frage:
+Soll ich daraus ein Projektprofil erstellen, das Menschen und KI-Agenten später
+als Orientierung nutzen können?
+```
+
+## Komplettes Beispiel: Docker-Staging Planen
+
+```text
+Mensch:
+/ai-project-updater-docker-plan
+Ich möchte lokal testen können, bevor ich live update.
+
+Assistent:
+Ich plane nur, ich setze noch nichts um.
+Docker wäre hier wie eine lokale Testwerkstatt. Wir könnten dort Datenbank, API
+und Mailversand nachbauen, ohne echte Nutzer zu gefährden.
+
+Meine erste Frage:
+Soll die lokale Staging-Umgebung nur API und Datenbank enthalten, oder auch App,
+Admin und Mail-Testsystem?
+```
+
+## Komplettes Beispiel: Live Vorbereiten
+
+```text
+Mensch:
+/ai-project-updater-live-preflight
+Ich glaube, das Update kann bald live gehen.
+
+Assistent:
+Ich bereite Live nur vor und führe nichts live aus.
+Live bedeutet echte Nutzerinnen und Nutzer. Deshalb prüfe ich zuerst:
+- lokaler Teststand,
+- Staging-Test,
+- Backup-Plan,
+- Datenbankmigrationen,
+- Rollback,
+- Smoke-Test nach dem Update.
+
+Wenn etwas fehlt, gebe ich Rot oder Gelb statt einfach weiterzumachen.
+```
+
 ## Was Der Assistent Dokumentieren Kann
 
 Für längere Sitzungen kann der Agent ein Sitzungsprotokoll führen.
@@ -423,10 +554,18 @@ AI-Project-Updater-Skill/
 ├── .gitignore
 ├── .claude/
 │   └── commands/
-│       └── ai-project-updater.md
+│       ├── ai-project-updater.md
+│       ├── ai-project-updater-readonly.md
+│       ├── ai-project-updater-docker-plan.md
+│       ├── ai-project-updater-staging-check.md
+│       └── ai-project-updater-live-preflight.md
 ├── .codex/
 │   └── commands/
-│       └── ai-project-updater.md
+│       ├── ai-project-updater.md
+│       ├── ai-project-updater-readonly.md
+│       ├── ai-project-updater-docker-plan.md
+│       ├── ai-project-updater-staging-check.md
+│       └── ai-project-updater-live-preflight.md
 ├── ai-project-updater/
 │   ├── SKILL.md
 │   └── agents/
@@ -443,17 +582,34 @@ AI-Project-Updater-Skill/
     └── README.md
 ```
 
-## Verhältnis Zu Anderen Skills
+## Verwandte Projekte Von Michael Gahn DESIGN
 
-Der Skill ergänzt:
+Der AI Project Updater Skill gehört zu einer kleinen Werkzeugfamilie für
+KI-gestützte Projektarbeit.
 
-- **DEV-Skill** für Projekt-Sync, Tests und Deploy-Vorbereitung,
-- **ProjectClean-Skill** für Abschluss, Version, Backup und Cleanup,
-- **AI-PlayTest-Skill** für Nutzertests,
-- **AI-Basic-Projektordner** als Projektgrundlage.
+- [AI-Basic-Projektordner](https://github.com/MichaelGahnDESIGN/AI-Basic-Projektordner)  
+  Eine saubere Projektvorlage mit Regeln, Dokumentation, Agentenstruktur und
+  Sicherheitsgrenzen. Sinnvoll als Basis für neue Projekte.
+
+- [DEV-Skill](https://github.com/MichaelGahnDESIGN/DEV-Skill)  
+  Ein projektneutraler Skill für Projekt-Sync, Tests, GitHub-Abgleich,
+  Deploy-Vorbereitung, Backups und Abschlussberichte.
+
+- [ProjectClean-Skill](https://github.com/MichaelGahnDESIGN/ProjectClean-Skill)  
+  Ein Abschluss- und Aufräum-Skill für Versionen, Tests, Commits, Backups,
+  Dokumentation und vorsichtiges Cleanup.
+
+- [AI-PlayTest-Skill](https://github.com/MichaelGahnDESIGN/AI-PlayTest-Skill)  
+  Ein Skill für Play-Tests aus Sicht echter Nutzerrollen, lokal, auf Staging
+  oder vorsichtig auf Live.
+
+- [Claude-Codex-MCP](https://github.com/MichaelGahnDESIGN/Claude-Codex-MCP)  
+  Ein lokales MCP-System für Aufgaben, Chat und Übergaben zwischen Claude,
+  Codex und weiteren KI-Agenten.
 
 Der AI Project Updater Skill ist der geführte Assistent davor und dazwischen:
-Er hilft zu verstehen, zu ordnen, sicher zu planen und erst danach umzusetzen.
+Er hilft, ein Projekt zu verstehen, lokale Staging-Umgebungen zu planen und
+sichere Updates vorzubereiten.
 
 ## Lizenz
 

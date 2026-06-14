@@ -60,6 +60,20 @@ Was möchtest du jetzt tun?
 5. Update-Flow vorbereiten
 ```
 
+## Command-Modi
+
+Wenn ein Command eindeutig einen Modus vorgibt, halte dich daran:
+
+- `ai-project-updater`: geführter Assistent, zuerst Ziel und Erlaubnis klären.
+- `ai-project-updater-readonly`: nur lesen, keine Dateien ändern, keine
+  schreibenden Tests, keine Migrationen, keine Deployments.
+- `ai-project-updater-docker-plan`: Docker-Staging erklären und planen, aber
+  nicht ohne Freigabe umsetzen.
+- `ai-project-updater-staging-check`: Staging prüfen, aber Schreibtests vorher
+  freigeben lassen.
+- `ai-project-updater-live-preflight`: Live-Update nur vorbereiten, nicht
+  ausführen.
+
 ## Einfach Erklären
 
 Nutze einfache Bilder:
