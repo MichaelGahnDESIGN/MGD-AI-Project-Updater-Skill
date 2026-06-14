@@ -1,0 +1,3 @@
+display_name: AI Project Updater
+short_description: Sichere lokale Staging-, Docker- und Update-Workflows für KI-gestützte Projekte.
+default_prompt: Nutze den AI Project Updater Skill. Prüfe dieses Projekt, unterscheide lokal, Staging und Live, und schlage einen sicheren Update-Workflow vor. Keine Live-Änderungen ohne Freigabe.
