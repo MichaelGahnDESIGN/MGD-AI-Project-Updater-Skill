@@ -590,30 +590,24 @@ Diese Daten dürfen **niemals** die lokale Maschine verlassen — weder nach Git
 
 Alle genannten Muster gehören in `.gitignore`. Technische Absicherung: der Pre-Push-Hook aus dem [MGD-DEV-Skill](https://github.com/MichaelGahnDESIGN/MGD-DEV-Skill) (`dev/hooks/pre-push`) blockiert solche Pushes hart — empfohlen, am besten global via `git config --global core.hooksPath ~/.git-hooks`.
 
-## Verwandte Projekte Von Michael Gahn DESIGN
-
-Der AI Project Updater Skill gehört zu einer kleinen Werkzeugfamilie für
-KI-gestützte Projektarbeit.
-
-- [MGD-AI-Basic-Projektordner](https://github.com/MichaelGahnDESIGN/MGD-AI-Basic-Projektordner)  
-  Eine saubere Projektvorlage mit Regeln, Dokumentation, Agentenstruktur und
-  Sicherheitsgrenzen. Sinnvoll als Basis für neue Projekte.
-
-- [MGD-DEV-Skill](https://github.com/MichaelGahnDESIGN/MGD-DEV-Skill)  
-  Ein projektneutraler Skill für Projekt-Sync, Tests, GitHub-Abgleich,
-  Deploy-Vorbereitung, Backups und Abschlussberichte.
-
-- [MGD-ProjectClean-Skill](https://github.com/MichaelGahnDESIGN/MGD-ProjectClean-Skill)  
-  Ein Abschluss- und Aufräum-Skill für Versionen, Tests, Commits, Backups,
-  Dokumentation und vorsichtiges Cleanup.
-
-- [MGD-AI-PlayTest-Skill](https://github.com/MichaelGahnDESIGN/MGD-AI-PlayTest-Skill)  
-  Ein Skill für Play-Tests aus Sicht echter Nutzerrollen, lokal, auf Staging
-  oder vorsichtig auf Live.
-
 Der AI Project Updater Skill ist der geführte Assistent davor und dazwischen:
 Er hilft, ein Projekt zu verstehen, lokale Staging-Umgebungen zu planen und
 sichere Updates vorzubereiten.
+
+---
+
+## Verwandte MGD Projekte
+
+| Projekt | Beschreibung |
+|---------|-------------|
+| [MGD-AI-Basic-Projektordner](https://github.com/MichaelGahnDESIGN/MGD-AI-Basic-Projektordner) | Projektvorlage für KI-Agenten |
+| [MGD-DEV-Skill](https://github.com/MichaelGahnDESIGN/MGD-DEV-Skill) | Release, Sync, Backup und Wissensdokumentation |
+| [MGD-App-Updater-Skill](https://github.com/MichaelGahnDESIGN/MGD-App-Updater-Skill) | Software-Update-Systeme planen und implementieren |
+| [MGD-ProjectClean-Skill](https://github.com/MichaelGahnDESIGN/MGD-ProjectClean-Skill) | Abschluss- und Aufräum-Workflow |
+| [MGD-AI-PlayTest-Skill](https://github.com/MichaelGahnDESIGN/MGD-AI-PlayTest-Skill) | Live-Playtest aus Nutzerperspektive |
+| [MGD-Bugreport-Skill](https://github.com/MichaelGahnDESIGN/MGD-Bugreport-Skill) | Feedback-Hub: Bug-Meldung, Ideen und Support |
+
+→ Alle öffentlichen Projekte: [github.com/MichaelGahnDESIGN](https://github.com/MichaelGahnDESIGN)
 
 ## Lizenz
 
