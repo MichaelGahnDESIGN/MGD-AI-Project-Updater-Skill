@@ -13,9 +13,6 @@ Die wichtigste Idee ist einfach:
 > Änderungen zuerst lokal oder auf Staging. Erst wenn alles nachvollziehbar
 > funktioniert, wird Live aktualisiert.
 
-Dieses Repository ist zuerst privat gedacht. Es soll erst öffentlich werden,
-wenn der Assistent wirklich gut funktioniert, verständlich genug erklärt ist und
-in echten Projekten getestet wurde.
 
 ## Schnellstart Für Nicht-Programmierer
 
@@ -591,32 +588,28 @@ Diese Daten dürfen **niemals** die lokale Maschine verlassen — weder nach Git
 - **Sensible Daten:** `.env*` (außer `.env.example`), Tokens, API-Keys, Passwörter, `*.pem`, `*.key`, Zugangsdaten — niemals committen/pushen/deployen.
 - **Push-Disziplin:** Nur den Hauptbranch (`main`) pushen, **niemals** `git push --all`/`--mirror`. `PlayTest*`-Branches werden nie gepusht.
 
-Alle genannten Muster gehören in `.gitignore`. Technische Absicherung: der Pre-Push-Hook aus dem [DEV-Skill](https://github.com/MichaelGahnDESIGN/DEV-Skill) (`dev/hooks/pre-push`) blockiert solche Pushes hart — empfohlen, am besten global via `git config --global core.hooksPath ~/.git-hooks`.
+Alle genannten Muster gehören in `.gitignore`. Technische Absicherung: der Pre-Push-Hook aus dem [MGD-DEV-Skill](https://github.com/MichaelGahnDESIGN/MGD-DEV-Skill) (`dev/hooks/pre-push`) blockiert solche Pushes hart — empfohlen, am besten global via `git config --global core.hooksPath ~/.git-hooks`.
 
 ## Verwandte Projekte Von Michael Gahn DESIGN
 
 Der AI Project Updater Skill gehört zu einer kleinen Werkzeugfamilie für
 KI-gestützte Projektarbeit.
 
-- [AI-Basic-Projektordner](https://github.com/MichaelGahnDESIGN/AI-Basic-Projektordner)  
+- [MGD-AI-Basic-Projektordner](https://github.com/MichaelGahnDESIGN/MGD-AI-Basic-Projektordner)  
   Eine saubere Projektvorlage mit Regeln, Dokumentation, Agentenstruktur und
   Sicherheitsgrenzen. Sinnvoll als Basis für neue Projekte.
 
-- [DEV-Skill](https://github.com/MichaelGahnDESIGN/DEV-Skill)  
+- [MGD-DEV-Skill](https://github.com/MichaelGahnDESIGN/MGD-DEV-Skill)  
   Ein projektneutraler Skill für Projekt-Sync, Tests, GitHub-Abgleich,
   Deploy-Vorbereitung, Backups und Abschlussberichte.
 
-- [ProjectClean-Skill](https://github.com/MichaelGahnDESIGN/ProjectClean-Skill)  
+- [MGD-ProjectClean-Skill](https://github.com/MichaelGahnDESIGN/MGD-ProjectClean-Skill)  
   Ein Abschluss- und Aufräum-Skill für Versionen, Tests, Commits, Backups,
   Dokumentation und vorsichtiges Cleanup.
 
-- [AI-PlayTest-Skill](https://github.com/MichaelGahnDESIGN/AI-PlayTest-Skill)  
+- [MGD-AI-PlayTest-Skill](https://github.com/MichaelGahnDESIGN/MGD-AI-PlayTest-Skill)  
   Ein Skill für Play-Tests aus Sicht echter Nutzerrollen, lokal, auf Staging
   oder vorsichtig auf Live.
-
-- [Claude-Codex-MCP](https://github.com/MichaelGahnDESIGN/Claude-Codex-MCP)  
-  Ein lokales MCP-System für Aufgaben, Chat und Übergaben zwischen Claude,
-  Codex und weiteren KI-Agenten.
 
 Der AI Project Updater Skill ist der geführte Assistent davor und dazwischen:
 Er hilft, ein Projekt zu verstehen, lokale Staging-Umgebungen zu planen und
@@ -628,18 +621,4 @@ MIT Lizenz. Siehe [LICENSE](LICENSE).
 
 ## Impressum
 
-Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz)
-
-Michael Gahn DESIGN<br>
-Michael Gahn<br>
-Dr.-Theodor-Brugsch Str. 12<br>
-08529 Plauen<br>
-Sachsen<br>
-Deutschland
-
-Tel.: +49 (0) 176 557 647 48<br>
-E-Mail: Anfrage@Michael-Gahn.de
-
-Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br>
-Steuernummer: 223/222/02451<br>
-USt-ID: DE288143343
+Siehe [IMPRESSUM.md](IMPRESSUM.md).
